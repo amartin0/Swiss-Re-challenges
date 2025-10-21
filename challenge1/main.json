@@ -4,16 +4,15 @@
   "parameters": {
     "location": {
       "type": "string",
-      "defaultValue": "EastUS"
+      "defaultValue": "westeurope"
     }
   },
   "variables": {},
   "resources": [
     {
+      "name": "deployResourceGroup",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2021-04-01",
-      "name": "deployResourceGroup",
-      "location": "[parameters('location')]",
       "properties": {
         "mode": "Incremental",
         "templateLink": {
@@ -25,7 +24,76 @@
           "contentVersion": "1.0.0.0"
         }
       }
+    },
+    {
+      "name": "deployUdr",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "dependsOn": ["deployResourceGroup"],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "https://<repo-or-storage>/network/udr.json",
+          "contentVersion": "1.0.0.0"
+        },
+        "parametersLink": {
+          "uri": "https://<repo-or-storage>/network/udr-params.json",
+          "contentVersion": "1.0.0.0"
+        }
+      }
+    },
+    {
+      "name": "deployVnet",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "dependsOn": ["deployUdr"],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "https://<repo-or-storage>/network/vnet.json",
+          "contentVersion": "1.0.0.0"
+        },
+        "parametersLink": {
+          "uri": "https://<repo-or-storage>/network/vnet-params.json",
+          "contentVersion": "1.0.0.0"
+        }
+      }
+    },
+    {
+      "name": "deployBastion",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "dependsOn": ["deployVnet"],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "https://<repo-or-storage>/network/bastion.json",
+          "contentVersion": "1.0.0.0"
+        },
+        "parametersLink": {
+          "uri": "https://<repo-or-storage>/network/bastion-params.json",
+          "contentVersion": "1.0.0.0"
+        }
+      }
+    },
+    {
+      "name": "deployFirewall",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "dependsOn": ["deployVnet"],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "https://<repo-or-storage>/network/firewall.json",
+          "contentVersion": "1.0.0.0"
+        },
+        "parametersLink": {
+          "uri": "https://<repo-or-storage>/network/firewall-params.json",
+          "contentVersion": "1.0.0.0"
+        }
+      }
     }
   ]
 }
+
 

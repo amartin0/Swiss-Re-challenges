@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "bastionName": { "type": "string" },
+    "publicIpName": { "type": "string" },
+    "vnetName": { "type": "string" },
+    "tags": { "type": "object", "defaultValue": {} }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/bastionHosts",
+      "apiVersion": "2024-07-01",
+      "name": "[parameters('bastionName')]",
+      "location": "[resourceGroup().location]",
+      "tags": "[parameters('tags')]",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "IpConf",
+            "properties": {
+              "subnet": { "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName')), '/subnets/AzureBastionSubnet')]" },
+              "publicIPAddress": { "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIpName'))]" }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+
