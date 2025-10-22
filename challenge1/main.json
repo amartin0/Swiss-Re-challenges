@@ -85,6 +85,25 @@
           "contentVersion": "1.0.0.0"
         }
       }
+    },
+    {
+      "name": "deployServer",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "dependsOn": [
+        "deployVnet"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge1/server/server.json",
+          "contentVersion": "1.0.0.0"
+        },
+        "parametersLink": {
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge1/server/server-params.json",
+          "contentVersion": "1.0.0.0"
+        }
+      }
     }
   ],
   "outputs": {
