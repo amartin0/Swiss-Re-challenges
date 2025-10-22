@@ -10,13 +10,13 @@
     "subnetName": { "type": "string" },
     "privateIpAddress": { "type": "string" },
     "location": { "type": "string" },
-
-    // 🔽 Nuevos parámetros para la imagen base
     "imagePublisher": { "type": "string", "defaultValue": "canonical" },
     "imageOffer": { "type": "string", "defaultValue": "ubuntu-24_04-lts" },
     "imageSku": { "type": "string", "defaultValue": "ubuntu-pro" },
-    "imageVersion": { "type": "string", "defaultValue": "latest" }
-  },
+    "imageVersion": { "type": "string", "defaultValue": "latest" },
+    "cloudInitScript": { "type": "string"}
+    },
+
   "resources": [
     {
       "type": "Microsoft.Network/networkInterfaces",
@@ -63,6 +63,7 @@
           "computerName": "[parameters('vmName')]",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('adminPassword')]",
+	  "customData": "[base64(parameters('cloudInitScript'))]",
           "linuxConfiguration": {
             "disablePasswordAuthentication": false,
             "provisionVMAgent": true

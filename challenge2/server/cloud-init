@@ -1,0 +1,54 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+
+packages:
+  - apache2
+  - openssl
+
+runcmd:
+  # Enable required Apache modules
+  - a2enmod ssl
+  - a2enmod rewrite
+
+  # Create a directory for the SSL certificate
+  - mkdir -p /etc/apache2/ssl
+
+  # Generate a self-signed SSL certificate valid for 1 year
+  - openssl req -x509 -nodes -days 365 \
+      -subj "/C=US/ST=Example/L=Example/O=Example/CN=localhost" \
+      -newkey rsa:2048 \
+      -keyout /etc/apache2/ssl/apache-selfsigned.key \
+      -out /etc/apache2/ssl/apache-selfsigned.crt
+
+  # Create a default SSL configuration if it doesn’t already exist
+  - |
+    cat > /etc/apache2/sites-available/default-ssl.conf <<'EOF'
+    <IfModule mod_ssl.c>
+        <VirtualHost _default_:443>
+            ServerAdmin webmaster@localhost
+            DocumentRoot /var/www/html
+
+            SSLEngine on
+            SSLCertificateFile /etc/apache2/ssl/apache-selfsigned.crt
+            SSLCertificateKeyFile /etc/apache2/ssl/apache-selfsigned.key
+
+            <Directory /var/www/html>
+                Options Indexes FollowSymLinks
+                AllowOverride All
+                Require all granted
+            </Directory>
+
+            ErrorLog ${APACHE_LOG_DIR}/error.log
+            CustomLog ${APACHE_LOG_DIR}/access.log combined
+        </VirtualHost>
+    </IfModule>
+    EOF
+
+  # Enable the default SSL site
+  - a2ensite default-ssl
+
+  # Restart Apache to apply the changes
+  - systemctl restart apache2
+  - systemctl enable apache2
+
