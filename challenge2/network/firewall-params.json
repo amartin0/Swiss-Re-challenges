@@ -36,7 +36,7 @@
                 "destinationAddresses": ["[parameters('fwPublicIpName')]"],
                 "destinationPorts": ["80","443"],
                 "translatedAddress": "172.0.0.10",
-                "translatedPort": "*"
+                "translatedPort": ["80","443"] 
               }
             ]
           }
