@@ -22,6 +22,24 @@
               }
             ]
           }
+        },
+        {
+          "name": "lab-nat-web",
+          "properties": {
+            "priority": 200,
+            "action": { "type": "Dnat" },
+            "rules": [
+              {
+                "name": "nat-https-http",
+                "protocols": ["TCP"],
+                "sourceAddresses": ["*"],
+                "destinationAddresses": ["[parameters('fwPublicIpName')]"],
+                "destinationPorts": ["80","443"],
+                "translatedAddress": "172.0.0.10",
+                "translatedPort": "*"
+              }
+            ]
+          }
         }
       ]
     },
