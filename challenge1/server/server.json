@@ -9,7 +9,13 @@
     "vnetName": { "type": "string" },
     "subnetName": { "type": "string" },
     "privateIpAddress": { "type": "string" },
-    "location": { "type": "string" }
+    "location": { "type": "string" },
+
+    // 🔽 Nuevos parámetros para la imagen base
+    "imagePublisher": { "type": "string", "defaultValue": "canonical" },
+    "imageOffer": { "type": "string", "defaultValue": "ubuntu-24_04-lts" },
+    "imageSku": { "type": "string", "defaultValue": "ubuntu-pro" },
+    "imageVersion": { "type": "string", "defaultValue": "latest" }
   },
   "resources": [
     {
@@ -43,10 +49,10 @@
         },
         "storageProfile": {
           "imageReference": {
-            "publisher": "canonical",
-            "offer": "ubuntu-24_04-lts",
-            "sku": "ubuntu-pro",
-            "version": "latest"
+            "publisher": "[parameters('imagePublisher')]",
+            "offer": "[parameters('imageOffer')]",
+            "sku": "[parameters('imageSku')]",
+            "version": "[parameters('imageVersion')]"
           },
           "osDisk": {
             "createOption": "FromImage",
