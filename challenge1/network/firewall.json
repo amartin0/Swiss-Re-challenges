@@ -16,18 +16,26 @@
       "location": "[resourceGroup().location]",
       "tags": "[parameters('tags')]",
       "properties": {
+        "sku": {
+          "name": "AZFW_VNet",
+          "tier": "Standard"
+        },
         "ipConfigurations": [
           {
             "name": "ipConfig",
             "properties": {
-              "subnet": { "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName')), '/subnets/AzureFirewallSubnet')]" },
-              "publicIPAddress": { "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('fwPublicIpName'))]" }
+              "subnet": {
+                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName')), '/subnets/AzureFirewallSubnet')]"
+              },
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('fwPublicIpName'))]"
+              }
             }
           }
         ],
-        "networkRuleCollections": "[parameters('fwRules')]"
-      },
-      "sku": { "name": "AZFW_VNet", "tier": "Standard" }
+        "networkRuleCollections": "[parameters('fwRules')]",
+        "threatIntelMode": "Alert"
+      }
     }
   ]
 }
