@@ -25,7 +25,6 @@ az deployment group create --resource-group rg-lab-challenge1 --template-file ./
 - UDR configuration: The UDR name is configurable in its own parameters file, but the VNet module (vnet.json) references it directly using resourceId(). Therefore, the following is hardcoded in
   vnet.json:
 ```
-json
 Copy code
 "routeTable": {
     "id": "[resourceId('Microsoft.Network/routeTables', 'udr-lab-challenge1')]"
