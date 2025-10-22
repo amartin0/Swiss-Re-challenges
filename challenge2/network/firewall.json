@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "fwName": { "type": "string" },
+    "fwPublicIpName": { "type": "string" },
+    "vnetName": { "type": "string" },
+    "fwRules": { "type": "array" },
+    "tags": { "type": "object", "defaultValue": {} }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/publicIPAddresses",
+      "apiVersion": "2024-07-01",
+      "name": "[parameters('fwPublicIpName')]",
+      "location": "[resourceGroup().location]",
+      "sku": { "name": "Standard" },
+      "properties": { "publicIPAllocationMethod": "Static" },
+      "tags": "[parameters('tags')]"
+    },
+    {
+      "type": "Microsoft.Network/azureFirewalls",
+      "apiVersion": "2024-07-01",
+      "name": "[parameters('fwName')]",
+      "location": "[resourceGroup().location]",
+      "tags": "[parameters('tags')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/publicIPAddresses', parameters('fwPublicIpName'))]"
+      ],
+      "properties": {
+        "sku": { "name": "AZFW_VNet", "tier": "Standard" },
+        "ipConfigurations": [
+          {
+            "name": "ipConfig",
+            "properties": {
+              "subnet": {
+                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName')), '/subnets/AzureFirewallSubnet')]"
+              },
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('fwPublicIpName'))]"
+              }
+            }
+          }
+        ],
+        "networkRuleCollections": "[parameters('fwRules')]"
+      }
+    }
+  ]
+}
+
