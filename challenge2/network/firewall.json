@@ -6,6 +6,7 @@
     "fwPublicIpName": { "type": "string" },
     "vnetName": { "type": "string" },
     "fwRules": { "type": "array" },
+    "natRuleCollections": { "type": "array", "defaultValue": [] },
     "tags": { "type": "object", "defaultValue": {} }
   },
   "resources": [
@@ -42,7 +43,8 @@
             }
           }
         ],
-        "networkRuleCollections": "[parameters('fwRules')]"
+        "networkRuleCollections": "[parameters('fwRules')]",
+        "natRuleCollections": "[parameters('natRuleCollections')]"
       }
     }
   ]
