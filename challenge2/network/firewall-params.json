@@ -5,13 +5,14 @@
     "fwName": { "value": "fw-lab-challenge2" },
     "fwPublicIpName": { "value": "fw-lab-pip" },
     "vnetName": { "value": "vnet-lab-challenge2" },
+
     "networkRuleCollections": {
       "value": [
         {
           "name": "lab-allow-internet",
           "properties": {
             "priority": 100,
-            "action": "Allow",
+            "action": { "type": "Allow" },
             "rules": [
               {
                 "name": "services-internet",
@@ -25,28 +26,32 @@
         }
       ]
     },
+
     "natRuleCollections": {
       "value": [
         {
           "name": "lab-nat-web",
           "properties": {
             "priority": 200,
-            "action": "Dnat",
+            "action": { "type": "Dnat" },
             "rules": [
               {
                 "name": "nat-https-http",
                 "protocols": ["TCP"],
                 "sourceAddresses": ["*"],
-                "destinationAddresses": ["[parameters('fwPublicIpName')]"],
+                "destinationAddresses": [
+                  "[reference(resourceId('Microsoft.Network/publicIPAddresses', parameters('fwPublicIpName'))).ipAddress]"
+                ],
                 "destinationPorts": ["80","443"],
                 "translatedAddress": "172.0.0.10",
-                "translatedPort": "*"
+                "translatedPort": ["80","443"]
               }
             ]
           }
         }
       ]
     },
+
     "tags": {
       "value": {
         "exercise": "challenge2",

@@ -5,8 +5,8 @@
     "fwName": { "type": "string" },
     "fwPublicIpName": { "type": "string" },
     "vnetName": { "type": "string" },
-    "natRuleCollections": { "type": "array", "defaultValue": [] },
     "networkRuleCollections": { "type": "array", "defaultValue": [] },
+    "natRuleCollections": { "type": "array", "defaultValue": [] },
     "tags": { "type": "object", "defaultValue": {} }
   },
   "resources": [
