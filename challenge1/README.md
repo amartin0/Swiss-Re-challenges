@@ -33,3 +33,5 @@ Copy code
 - Server IP: The server uses a static IP, which is required to create a NAT rule in the firewall.
 
 - Firewall rules: Only one rule is configured to allow outbound traffic from the server to the internet. No inbound rules are added, as the default is to deny all inbound traffic. Additional rules will be added in Challenge 2.
+
+- User and password of the server is written in the parms file, that is a bad prectise, It should be read from a keyvault.  
