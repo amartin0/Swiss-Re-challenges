@@ -2,11 +2,11 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "vmName": { "value": "vm-lab-challenge1" },
+    "vmName": { "value": "vm-lab-challenge2" },
     "vmSize": { "value": "Standard_D2s_v3" },
     "adminUsername": { "value": "adminubuntu" },
     "adminPassword": { "value": "Temp0R4L!." },
-    "vnetName": { "value": "vnet-lab-challenge1" },
+    "vnetName": { "value": "vnet-lab-challenge2" },
     "subnetName": { "value": "default" },
     "privateIpAddress": { "value": "172.0.0.10" },
     "location": { "value": "westeurope" },

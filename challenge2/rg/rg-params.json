@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "rgName": {
-      "value": "rg-lab-challenge1"
+      "value": "rg-lab-challenge2"
     },
     "location": {
       "value": "WestEurope"

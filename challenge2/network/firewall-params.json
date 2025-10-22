@@ -2,9 +2,9 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "fwName": { "value": "fw-lab-challenge1" },
+    "fwName": { "value": "fw-lab-challenge2" },
     "fwPublicIpName": { "value": "fw-lab-pip" },
-    "vnetName": { "value": "vnet-lab-challenge1" },
+    "vnetName": { "value": "vnet-lab-challenge2" },
     "fwRules": {
       "value": [
         {
@@ -27,7 +27,7 @@
     },
     "tags": {
       "value": {
-        "exercise": "challenge1",
+        "exercise": "challenge2",
         "env": "lab"
       }
     }

@@ -2,11 +2,11 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "bastionName": { "value": "bastion-lab-challenge1" },
-    "vnetName": { "value": "vnet-lab-challenge1" },
+    "bastionName": { "value": "bastion-lab-challenge2" },
+    "vnetName": { "value": "vnet-lab-challenge2" },
     "tags": {
       "value": {
-        "exercise": "challenge1",
+        "exercise": "challenge2",
         "env": "lab"
       }
     }

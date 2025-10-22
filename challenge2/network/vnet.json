@@ -28,7 +28,7 @@
                 "[parameters('servicesSubnetPrefix')]"
               ],
               "routeTable": {
-                "id": "[resourceId('Microsoft.Network/routeTables', 'udr-lab-challenge1')]"
+                "id": "[resourceId('Microsoft.Network/routeTables', 'udr-lab-challenge2')]"
               },
               "privateEndpointNetworkPolicies": "Disabled",
               "privateLinkServiceNetworkPolicies": "Enabled"

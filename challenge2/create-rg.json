@@ -17,11 +17,11 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge1/rg/rg.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge2/rg/rg.json",
           "contentVersion": "1.0.0.0"
         },
         "parametersLink": {
-          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge1/rg/rg-params.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge2/rg/rg-params.json",
           "contentVersion": "1.0.0.0"
         }
       }
