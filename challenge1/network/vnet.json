@@ -1,24 +1,22 @@
-{
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "vnetName": { "type": "string" },
-    "vnetAddressPrefix": { "type": "string" },
-    "subnets": { "type": "array" },
-    "tags": { "type": "object", "defaultValue": {} }
-  },
-  "resources": [
-    {
-      "type": "Microsoft.Network/virtualNetworks",
-      "apiVersion": "2024-07-01",
-      "name": "[parameters('vnetName')]",
-      "location": "[resourceGroup().location]",
-      "tags": "[parameters('tags')]",
-      "properties": {
-        "addressSpace": { "addressPrefixes": ["[parameters('vnetAddressPrefix')]"] },
-        "subnets": "[parameters('subnets')]"
-      }
+"parameters": {
+  "vnetName": { "type": "string" },
+  "addressPrefixes": { "type": "array" },
+  "subnets": { "type": "array" },
+  "tags": { "type": "object", "defaultValue": {} }
+},
+"resources": [
+  {
+    "type": "Microsoft.Network/virtualNetworks",
+    "apiVersion": "2024-07-01",
+    "name": "[parameters('vnetName')]",
+    "location": "[resourceGroup().location]",
+    "tags": "[parameters('tags')]",
+    "properties": {
+      "addressSpace": {
+        "addressPrefixes": "[parameters('addressPrefixes')]"
+      },
+      "subnets": "[parameters('subnets')]"
     }
-  ]
-}
+  }
+]
 

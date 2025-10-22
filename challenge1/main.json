@@ -2,42 +2,28 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "location": {
-      "type": "string",
-      "defaultValue": "westeurope"
+    "tags": {
+      "type": "object",
+      "defaultValue": {
+        "exercise": "challenge1",
+        "env": "lab"
+      }
     }
   },
   "variables": {},
   "resources": [
     {
-      "name": "deployResourceGroup",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2021-04-01",
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge1/rg/rg.json",
-          "contentVersion": "1.0.0.0"
-        },
-        "parametersLink": {
-          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge1/rg/rg-params.json",
-          "contentVersion": "1.0.0.0"
-        }
-      }
-    },
-    {
       "name": "deployUdr",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2021-04-01",
-      "dependsOn": ["deployResourceGroup"],
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "https://<repo-or-storage>/network/udr.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge1/network/udr.json",
           "contentVersion": "1.0.0.0"
         },
         "parametersLink": {
-          "uri": "https://<repo-or-storage>/network/udr-params.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge1/network/udr-params.json",
           "contentVersion": "1.0.0.0"
         }
       }
@@ -46,32 +32,17 @@
       "name": "deployVnet",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2021-04-01",
-      "dependsOn": ["deployUdr"],
+      "dependsOn": [
+        "deployUdr"
+      ],
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "https://<repo-or-storage>/network/vnet.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge1/network/vnet.json",
           "contentVersion": "1.0.0.0"
         },
         "parametersLink": {
-          "uri": "https://<repo-or-storage>/network/vnet-params.json",
-          "contentVersion": "1.0.0.0"
-        }
-      }
-    },
-    {
-      "name": "deployBastion",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2021-04-01",
-      "dependsOn": ["deployVnet"],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "https://<repo-or-storage>/network/bastion.json",
-          "contentVersion": "1.0.0.0"
-        },
-        "parametersLink": {
-          "uri": "https://<repo-or-storage>/network/bastion-params.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge1/network/vnet-params.json",
           "contentVersion": "1.0.0.0"
         }
       }
@@ -80,20 +51,47 @@
       "name": "deployFirewall",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2021-04-01",
-      "dependsOn": ["deployVnet"],
+      "dependsOn": [
+        "deployVnet"
+      ],
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "https://<repo-or-storage>/network/firewall.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge1/network/firewall.json",
           "contentVersion": "1.0.0.0"
         },
         "parametersLink": {
-          "uri": "https://<repo-or-storage>/network/firewall-params.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge1/network/firewall-params.json",
+          "contentVersion": "1.0.0.0"
+        }
+      }
+    },
+    {
+      "name": "deployBastion",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "dependsOn": [
+        "deployVnet",
+        "deployFirewall"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge1/network/bastion.json",
+          "contentVersion": "1.0.0.0"
+        },
+        "parametersLink": {
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge1/network/bastion-params.json",
           "contentVersion": "1.0.0.0"
         }
       }
     }
-  ]
+  ],
+  "outputs": {
+    "status": {
+      "type": "string",
+      "value": "Deployment completed successfully inside existing Resource Group."
+    }
+  }
 }
-
 

@@ -7,7 +7,7 @@
     },
     "location": {
       "type": "string",
-      "defaultValue": "EastUS"
+      "defaultValue": "westeurope"
     },
     "tags": {
       "type": "object",

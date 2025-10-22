@@ -2,21 +2,41 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "vnetName": { "value": "vnet-lab-challenge1" },
-    "vnetAddressPrefix": { "value": "172.0.0.0/24" },
+    "vnetName": { "value": "lab-vnet" },
+    "addressPrefixes": { "value": ["172.0.0.0/24"] },
     "subnets": {
       "value": [
-        { "name": "AzureFirewallSubnet", "properties": { "addressPrefix": "172.0.0.192/26" } },
-        { "name": "AzureBastionSubnet", "properties": { "addressPrefix": "172.0.0.128/26" } },
-        { "name": "services", "properties": { "addressPrefix": "172.0.0.0/25", "routeTable": { "id": "[resourceId('Microsoft.Network/routeTables', 'udr-lab-challenge1')]" } } }
+        {
+          "name": "services",
+          "properties": {
+            "addressPrefixes": ["172.0.0.0/25"],
+            "routeTable": { "id": "[subscriptionResourceId('Microsoft.Network/routeTables','udr-lab-challenge1')]" },
+            "delegations": [],
+            "privateEndpointNetworkPolicies": "Disabled",
+            "privateLinkServiceNetworkPolicies": "Enabled"
+          }
+        },
+        {
+          "name": "AzureBastionSubnet",
+          "properties": {
+            "addressPrefixes": ["172.0.0.128/26"],
+            "delegations": [],
+            "privateEndpointNetworkPolicies": "Disabled",
+            "privateLinkServiceNetworkPolicies": "Enabled"
+          }
+        },
+        {
+          "name": "AzureFirewallSubnet",
+          "properties": {
+            "addressPrefixes": ["172.0.0.192/26"],
+            "delegations": [],
+            "privateEndpointNetworkPolicies": "Disabled",
+            "privateLinkServiceNetworkPolicies": "Enabled"
+          }
+        }
       ]
     },
-    "tags": {
-      "value": {
-        "exercise": "challenge1",
-        "env": "lab"
-      }
-    }
+    "tags": { "value": { "exercise": "challenge1", "env": "lab" } }
   }
 }
 
