@@ -7,7 +7,6 @@
     "servicesSubnetPrefix": { "type": "string" },
     "bastionSubnetPrefix": { "type": "string" },
     "firewallSubnetPrefix": { "type": "string" },
-    "routeTableId": { "type": "string" },
     "tags": { "type": "object" }
   },
   "resources": [
@@ -25,8 +24,12 @@
           {
             "name": "services",
             "properties": {
-              "addressPrefixes": ["[parameters('servicesSubnetPrefix')]"],
-              "routeTable": { "id": "[resourceId('Microsoft.Network/routeTables', 'udr-lab-challenge1')]" }, 
+              "addressPrefixes": [
+                "[parameters('servicesSubnetPrefix')]"
+              ],
+              "routeTable": {
+                "id": "[resourceId('Microsoft.Network/routeTables', 'udr-lab-challenge1')]"
+              },
               "privateEndpointNetworkPolicies": "Disabled",
               "privateLinkServiceNetworkPolicies": "Enabled"
             }
@@ -34,7 +37,9 @@
           {
             "name": "AzureBastionSubnet",
             "properties": {
-              "addressPrefixes": ["[parameters('bastionSubnetPrefix')]"],
+              "addressPrefixes": [
+                "[parameters('bastionSubnetPrefix')]"
+              ],
               "privateEndpointNetworkPolicies": "Disabled",
               "privateLinkServiceNetworkPolicies": "Enabled"
             }
@@ -42,7 +47,9 @@
           {
             "name": "AzureFirewallSubnet",
             "properties": {
-              "addressPrefixes": ["[parameters('firewallSubnetPrefix')]"],
+              "addressPrefixes": [
+                "[parameters('firewallSubnetPrefix')]"
+              ],
               "privateEndpointNetworkPolicies": "Disabled",
               "privateLinkServiceNetworkPolicies": "Enabled"
             }
