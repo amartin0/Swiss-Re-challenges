@@ -27,11 +27,8 @@
       "dependsOn": [
         "[resourceId('Microsoft.Network/publicIPAddresses', parameters('fwPublicIpName'))]"
       ],
-      "sku": {
-        "name": "AZFW_VNet",
-        "tier": "Standard"
-      },
       "properties": {
+        "sku": { "name": "AZFW_VNet", "tier": "Standard" },
         "ipConfigurations": [
           {
             "name": "ipConfig",
