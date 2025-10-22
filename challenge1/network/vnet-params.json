@@ -4,38 +4,10 @@
   "parameters": {
     "vnetName": { "value": "lab-vnet" },
     "addressPrefixes": { "value": ["172.0.0.0/24"] },
-    "subnets": {
-      "value": [
-        {
-          "name": "services",
-          "properties": {
-            "addressPrefixes": ["172.0.0.0/25"],
-            "routeTable": { "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Network/routeTables/udr-lab-challenge1" },
-            "delegations": [],
-            "privateEndpointNetworkPolicies": "Disabled",
-            "privateLinkServiceNetworkPolicies": "Enabled"
-          }
-        },
-        {
-          "name": "AzureBastionSubnet",
-          "properties": {
-            "addressPrefixes": ["172.0.0.128/26"],
-            "delegations": [],
-            "privateEndpointNetworkPolicies": "Disabled",
-            "privateLinkServiceNetworkPolicies": "Enabled"
-          }
-        },
-        {
-          "name": "AzureFirewallSubnet",
-          "properties": {
-            "addressPrefixes": ["172.0.0.192/26"],
-            "delegations": [],
-            "privateEndpointNetworkPolicies": "Disabled",
-            "privateLinkServiceNetworkPolicies": "Enabled"
-          }
-        }
-      ]
-    },
+    "servicesSubnetPrefix": { "value": "172.0.0.0/25" },
+    "bastionSubnetPrefix": { "value": "172.0.0.128/26" },
+    "firewallSubnetPrefix": { "value": "172.0.0.192/26" },
+    "routeTableId": { "value": "[resourceId('Microsoft.Network/routeTables', 'udr-lab-challenge1')]" },
     "tags": { "value": { "exercise": "challenge1", "env": "lab" } }
   }
 }
