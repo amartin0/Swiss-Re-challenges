@@ -27,51 +27,6 @@
       ]
     },
 
-    "natRuleCollections": {
-      "value": [
-        {
-          "name": "lab-nat-http",
-          "properties": {
-            "priority": 200,
-            "action": { "type": "Dnat" },
-            "rules": [
-              {
-                "name": "nat-http",
-                "protocols": ["TCP"],
-                "sourceAddresses": ["*"],
-                "destinationAddresses": [
-                  "[reference(resourceId('Microsoft.Network/publicIPAddresses', parameters('fwPublicIpName'))).ipAddress]"
-                ],
-                "destinationPorts": "80",
-                "translatedAddress": "172.0.0.10",
-                "translatedPort": "80"
-              }
-            ]
-          }
-        },
-        {
-          "name": "lab-nat-https",
-          "properties": {
-            "priority": 201,
-            "action": { "type": "Dnat" },
-            "rules": [
-              {
-                "name": "nat-https",
-                "protocols": ["TCP"],
-                "sourceAddresses": ["*"],
-                "destinationAddresses": [
-                  "[reference(resourceId('Microsoft.Network/publicIPAddresses', parameters('fwPublicIpName'))).ipAddress]"
-                ],
-                "destinationPorts": "443",
-                "translatedAddress": "172.0.0.10",
-                "translatedPort": "443"
-              }
-            ]
-          }
-        }
-      ]
-    },
-
     "tags": {
       "value": {
         "exercise": "challenge2",

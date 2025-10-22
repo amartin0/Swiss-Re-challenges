@@ -6,7 +6,6 @@
     "fwPublicIpName": { "type": "string" },
     "vnetName": { "type": "string" },
     "networkRuleCollections": { "type": "array", "defaultValue": [] },
-    "natRuleCollections": { "type": "array", "defaultValue": [] },
     "tags": { "type": "object", "defaultValue": {} }
   },
   "resources": [
@@ -44,7 +43,39 @@
           }
         ],
         "networkRuleCollections": "[parameters('networkRuleCollections')]",
-        "natRuleCollections": "[parameters('natRuleCollections')]"
+        "natRuleCollections": [
+          {
+            "name": "lab-nat-http-https",
+            "properties": {
+              "priority": 100,
+              "action": { "type": "Dnat" },
+              "rules": [
+                {
+                  "name": "nat-http",
+                  "protocols": ["TCP"],
+                  "sourceAddresses": ["*"],
+                  "destinationAddresses": [
+                    "[reference(resourceId('Microsoft.Network/publicIPAddresses', parameters('fwPublicIpName'))).ipAddress]"
+                  ],
+                  "destinationPorts": ["80"],
+                  "translatedAddress": "172.0.0.10",
+                  "translatedPort": "80"
+                },
+                {
+                  "name": "nat-https",
+                  "protocols": ["TCP"],
+                  "sourceAddresses": ["*"],
+                  "destinationAddresses": [
+                    "[reference(resourceId('Microsoft.Network/publicIPAddresses', parameters('fwPublicIpName'))).ipAddress]"
+                  ],
+                  "destinationPorts": ["443"],
+                  "translatedAddress": "172.0.0.10",
+                  "translatedPort": "443"
+                }
+              ]
+            }
+          }
+        ]
       }
     }
   ]
