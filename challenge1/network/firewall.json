@@ -15,9 +15,7 @@
       "name": "[parameters('fwPublicIpName')]",
       "location": "[resourceGroup().location]",
       "sku": { "name": "Standard" },
-      "properties": {
-        "publicIPAllocationMethod": "Static"
-      },
+      "properties": { "publicIPAllocationMethod": "Static" },
       "tags": "[parameters('tags')]"
     },
     {
@@ -29,6 +27,10 @@
       "dependsOn": [
         "[resourceId('Microsoft.Network/publicIPAddresses', parameters('fwPublicIpName'))]"
       ],
+      "sku": {
+        "name": "AZFW_VNet",
+        "tier": "Standard"
+      },
       "properties": {
         "ipConfigurations": [
           {
@@ -44,8 +46,7 @@
           }
         ],
         "networkRuleCollections": "[parameters('fwRules')]"
-      },
-      "sku": { "name": "AZFW_VNet", "tier": "Standard" }
+      }
     }
   ]
 }
