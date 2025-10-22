@@ -5,13 +5,13 @@
     "fwName": { "value": "fw-lab-challenge2" },
     "fwPublicIpName": { "value": "fw-lab-pip" },
     "vnetName": { "value": "vnet-lab-challenge2" },
-    "fwRules": {
+    "networkRuleCollections": {
       "value": [
         {
           "name": "lab-allow-internet",
           "properties": {
             "priority": 100,
-            "action": { "type": "Allow" },
+            "action": "Allow",
             "rules": [
               {
                 "name": "services-internet",
@@ -22,12 +22,16 @@
               }
             ]
           }
-        },
+        }
+      ]
+    },
+    "natRuleCollections": {
+      "value": [
         {
           "name": "lab-nat-web",
           "properties": {
             "priority": 200,
-            "action": { "type": "Dnat" },
+            "action": "Dnat",
             "rules": [
               {
                 "name": "nat-https-http",
@@ -36,7 +40,7 @@
                 "destinationAddresses": ["[parameters('fwPublicIpName')]"],
                 "destinationPorts": ["80","443"],
                 "translatedAddress": "172.0.0.10",
-                "translatedPort": ["80","443"] 
+                "translatedPort": "*"
               }
             ]
           }
