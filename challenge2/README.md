@@ -10,7 +10,7 @@ az deployment sub create --location westeurope --template-file ./create-rg.json
 Deploy all resources inside the resource group:
 
 ```
-az deployment group create --resource-group rg-lab-challenge1 --template-file ./main.json
+az deployment group create --resource-group rg-lab-challenge2 --template-file ./main.json
 ```
 ## Considerations
 
