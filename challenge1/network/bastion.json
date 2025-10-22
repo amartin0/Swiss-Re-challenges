@@ -3,24 +3,41 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "bastionName": { "type": "string" },
-    "publicIpName": { "type": "string" },
     "vnetName": { "type": "string" },
     "tags": { "type": "object", "defaultValue": {} }
   },
   "resources": [
+    {
+      "type": "Microsoft.Network/publicIPAddresses",
+      "apiVersion": "2024-07-01",
+      "name": "[concat(parameters('bastionName'), '-pip')]",
+      "location": "[resourceGroup().location]",
+      "tags": "[parameters('tags')]",
+      "sku": { "name": "Standard" },
+      "properties": {
+        "publicIPAllocationMethod": "Static"
+      }
+    },
     {
       "type": "Microsoft.Network/bastionHosts",
       "apiVersion": "2024-07-01",
       "name": "[parameters('bastionName')]",
       "location": "[resourceGroup().location]",
       "tags": "[parameters('tags')]",
+      "dependsOn": [
+        "[concat('Microsoft.Network/publicIPAddresses/', parameters('bastionName'), '-pip')]"
+      ],
       "properties": {
         "ipConfigurations": [
           {
             "name": "IpConf",
             "properties": {
-              "subnet": { "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName')), '/subnets/AzureBastionSubnet')]" },
-              "publicIPAddress": { "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIpName'))]" }
+              "subnet": {
+                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName')), '/subnets/AzureBastionSubnet')]"
+              },
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(parameters('bastionName'), '-pip'))]"
+              }
             }
           }
         ]
