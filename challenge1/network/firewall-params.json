@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "fwName": { "value": "fw-lab-challenge1" },
-    "fwPublicIpName": { "value": "fw-lab--pip" },
+    "fwPublicIpName": { "value": "fw-lab-pip" },
     "vnetName": { "value": "vnet-lab-challenge1" },
     "fwRules": {
       "value": [
