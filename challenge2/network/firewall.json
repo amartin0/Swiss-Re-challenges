@@ -5,7 +5,6 @@
     "fwName": { "type": "string" },
     "fwPublicIpName": { "type": "string" },
     "vnetName": { "type": "string" },
-    "fwRules": { "type": "array", "defaultValue": [] },
     "natRuleCollections": { "type": "array", "defaultValue": [] },
     "networkRuleCollections": { "type": "array", "defaultValue": [] },
     "tags": { "type": "object", "defaultValue": {} }
@@ -44,7 +43,7 @@
             }
           }
         ],
-        "networkRuleCollections": "[parameters('fwRules')]",
+        "networkRuleCollections": "[parameters('networkRuleCollections')]",
         "natRuleCollections": "[parameters('natRuleCollections')]"
       }
     }
