@@ -22,7 +22,8 @@ az deployment group create --resource-group rg-lab-challenge1 --template-file ./
 ```
 "vnetName": { "value": "name-vnet" }
 ```
-- UDR configuration: The UDR name is configurable in its own parameters file, but the VNet module (vnet.json) references it directly using resourceId(). Therefore, the following is hardcoded in
+- UDR configuration: The UDR name is configurable in its own parameters file, but the VNet module (vnet.json) references it directly using resourceId(). Therefore, the following is har
+dcoded in
   vnet.json:
 ```
 Copy code
@@ -30,8 +31,10 @@ Copy code
     "id": "[resourceId('Microsoft.Network/routeTables', 'udr-lab-challenge1')]"
 }
 ```
-- Server IP: The server uses a static IP, which is required to create a NAT rule in the firewall.
+- Server IP: The server uses a static IP, which will be required to create a NAT rule in the firewall in the challenge 2.
 
-- Firewall rules: Only one rule is configured to allow outbound traffic from the server to the internet. No inbound rules are added, as the default is to deny all inbound traffic. Additional rules will be added in Challenge 2.
+- Firewall rules: Only one rule is configured to allow outbound traffic from the server to the internet. No inbound rules are added, as the default is to deny all inbound traffic. Addi
+tional rules will be added in Challenge 2.
 
 - User and password of the server is written in the params file, that is a bad practise, It should be read from a keyvault.  
+
