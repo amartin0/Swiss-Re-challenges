@@ -7,6 +7,9 @@ packages:
   - openssl
 
 runcmd:
+
+  #Enable ssl module
+  - a2enmod ssl
   
   # Enable the default SSL site
   - a2ensite default-ssl
