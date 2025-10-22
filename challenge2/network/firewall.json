@@ -7,6 +7,7 @@
     "vnetName": { "type": "string" },
     "fwRules": { "type": "array", "defaultValue": [] },
     "natRuleCollections": { "type": "array", "defaultValue": [] },
+    "networkRuleCollections": { "type": "array", "defaultValue": [] },
     "tags": { "type": "object", "defaultValue": {} }
   },
   "resources": [
