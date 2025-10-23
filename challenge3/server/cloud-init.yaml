@@ -52,4 +52,7 @@ runcmd:
   - bash -x /tmp/workingdir/update-apache-certs.sh
   - sleep 1
 
+  #Clean the workingdir
+  - rm -rf /tmp/workingdir/ 
+
 
