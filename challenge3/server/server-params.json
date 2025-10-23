@@ -21,7 +21,10 @@
 
     "dataDiskName": { "value": "vm-lab-challenge3-datadisk1" },
     "dataDiskSizeGB": { "value": 50 },
-    "dataDiskSku": { "value": "Standard_LRS" }
+    "dataDiskSku": { "value": "Standard_LRS" },
+    "userAssignedIdentityId": {
+      "value": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-westeurope-avd-AIBdemo-shared-resources/providers/Microsoft.ManagedIdentity/userAssignedIdentities/AIB-9be11e2f-e290-12d9-7cee-52983c4981d8"
+    }
   }
 }
 
