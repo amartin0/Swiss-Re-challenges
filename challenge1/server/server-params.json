@@ -7,10 +7,9 @@
     "adminUsername": { "value": "adminubuntu" },
     "adminPassword": { "value": "Temp0R4L!." },
     "vnetName": { "value": "vnet-lab-challenge1" },
-    "subnetName": { "value": "default" },
+    "subnetName": { "value": "services" },
     "privateIpAddress": { "value": "172.0.0.10" },
     "location": { "value": "westeurope" },
-
     "imagePublisher": { "value": "canonical" },
     "imageOffer": { "value": "ubuntu-24_04-lts" },
     "imageSku": { "value": "ubuntu-pro" },
