@@ -10,13 +10,13 @@
           "properties": {
             "addressPrefix": "0.0.0.0/0",
             "nextHopType": "VirtualAppliance",
-            "nextHopIpAddress": "172.0.0.196"
+            "nextHopIpAddress": "172.16.0.196"
           }
         },
         {
           "name": "vnet-internal",
           "properties": {
-            "addressPrefix": "172.0.0.0/24",
+            "addressPrefix": "172.16.0.0/24",
             "nextHopType": "VnetLocal"
           }
         }

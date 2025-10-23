@@ -58,7 +58,7 @@
                     "[reference(resourceId('Microsoft.Network/publicIPAddresses', parameters('fwPublicIpName'))).ipAddress]"
                   ],
                   "destinationPorts": ["80"],
-                  "translatedAddress": "172.0.0.10",
+                  "translatedAddress": "172.16.0.10",
                   "translatedPort": "80"
                 },
                 {
@@ -69,7 +69,7 @@
                     "[reference(resourceId('Microsoft.Network/publicIPAddresses', parameters('fwPublicIpName'))).ipAddress]"
                   ],
                   "destinationPorts": ["443"],
-                  "translatedAddress": "172.0.0.10",
+                  "translatedAddress": "172.16.0.10",
                   "translatedPort": "443"
                 }
               ]
