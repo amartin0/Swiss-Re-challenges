@@ -19,7 +19,6 @@
       }
     }
   ],
-
   "outputs": {
     "udrNameOutput": {
       "type": "string",
