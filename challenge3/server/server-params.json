@@ -8,7 +8,7 @@
     "adminPassword": { "value": "Temp0R4L!." },
     "vnetName": { "value": "vnet-lab-challenge3" },
     "subnetName": { "value": "services" },
-    "privateIpAddress": { "value": "172.0.0.10" },
+    "privateIpAddress": { "value": "172.16.0.10" },
     "location": { "value": "westeurope" },
 
     "imagePublisher": { "value": "canonical" },
