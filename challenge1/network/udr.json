@@ -19,5 +19,11 @@
       }
     }
   ]
+  "outputs": {
+  "udrNameOutput": {
+    "type": "string",
+    "value": "[parameters('udrName')]"
+  }
+}
 }
 

@@ -44,6 +44,11 @@
         "parametersLink": {
           "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge1/network/vnet-params.json",
           "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+           "udrName": {
+           "value": "[reference('deployUdr').outputs.udrNameOutput.value]"
+           }
         }
       }
     },
