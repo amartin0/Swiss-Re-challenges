@@ -7,7 +7,8 @@
     "servicesSubnetPrefix": { "type": "string" },
     "bastionSubnetPrefix": { "type": "string" },
     "firewallSubnetPrefix": { "type": "string" },
-    "tags": { "type": "object" }
+    "tags": { "type": "object" },
+    "udrName": { "type": "string" }
   },
   "resources": [
     {
@@ -28,7 +29,7 @@
                 "[parameters('servicesSubnetPrefix')]"
               ],
               "routeTable": {
-                "id": "[resourceId('Microsoft.Network/routeTables', 'udr-lab-challenge2')]"
+                "id": "[resourceId('Microsoft.Network/routeTables', parameters('udrName'))]"
               },
               "privateEndpointNetworkPolicies": "Disabled",
               "privateLinkServiceNetworkPolicies": "Enabled"
