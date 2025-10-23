@@ -40,8 +40,7 @@ set_ssl_param() {
 # Set SSL parameters according to Mozilla Intermediate
 set_ssl_param "$SSL_CONF" "SSLProtocol" "-all +TLSv1.2 +TLSv1.3"
 set_ssl_param "$SSL_CONF" "SSLOpenSSLConfCmd" "Curves X25519:prime256v1:secp384r1"
-set_ssl_param "$SSL_CONF" "SSLCipherSuite" "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDH
-E-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305"
+set_ssl_param "$SSL_CONF" "SSLCipherSuite" "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305"
 set_ssl_param "$SSL_CONF" "SSLHonorCipherOrder" "off"
 set_ssl_param "$SSL_CONF" "SSLSessionTickets" "off"
 
@@ -72,7 +71,7 @@ else
             if (block ~ /SSLEngine/) {
                 gsub(/SSLEngine\s+.*/, "SSLEngine on", block)
             } else {
-                block=gensub(/(<VirtualHost \*:443>)/, "\\1\n    SSLEngine on", "g", block)
+                block=gensub(/(<VirtualHost \*:443>)/, "\\1\n        SSLEngine on", "g", block)
             }
             # Protocols
             if (block ~ /Protocols/) {
