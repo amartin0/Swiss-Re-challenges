@@ -18,7 +18,7 @@ import os
 # CONFIGURATION PARAMETERS
 # -------------------------
 SECRETS_DIR = "/tmp/workingdir/secrets-App-Registration"
-KEYVAULT_NAME = "kv-lab-challenge3"
+KEYVAULT_NAME = "kv-lab-challenge"
 CERTIFICATE_NAME = "challenge3"
 OUTPUT_DIR = "/tmp/workingdir/cert_output"
 

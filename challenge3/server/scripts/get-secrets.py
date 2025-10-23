@@ -18,7 +18,7 @@ from azure.keyvault.secrets import SecretClient
 # ----------------------------
 
 # Name of your Key Vault (without https:// or .vault.azure.net)
-KEYVAULT_NAME = "kv-lab-challenge3"
+KEYVAULT_NAME = "kv-lab-challenge"
 
 # Client ID of your User-Assigned Managed Identity (UAMI)
 UAMI_CLIENT_ID = "36dac35d-79b0-40f3-bd66-ebc6399c12aa"
