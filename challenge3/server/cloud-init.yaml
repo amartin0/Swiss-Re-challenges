@@ -5,6 +5,7 @@ package_upgrade: true
 packages:
   - apache2
   - openssl
+  - python3-pip
 
 runcmd:
 
@@ -26,7 +27,7 @@ runcmd:
   #Download the script to configure the new disk
   - mkdir /tmp/workingdir  
   - curl -o /tmp/workingdir/disk1.bash -L https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/developing/challenge3/server/scripts/disk1.bash 
-  - bash -x /tmp/workingdir/disk1.bash
+  - bash -x /tmp/workingdir/disk1.bash /dev/sdc
   - sleep 1
 
   #Download the script to get the secrets TENANT-ID , CLIENT-ID and CLIENT-SECRET using the Azure modules of python.
