@@ -18,12 +18,13 @@
         "disableBgpRoutePropagation": true
       }
     }
-  ]
+  ],
+
   "outputs": {
-  "udrNameOutput": {
-    "type": "string",
-    "value": "[parameters('udrName')]"
+    "udrNameOutput": {
+      "type": "string",
+      "value": "[parameters('udrName')]"
+    }
   }
-}
 }
 
