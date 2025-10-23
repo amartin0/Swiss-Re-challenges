@@ -89,7 +89,18 @@
           "osDisk": {
             "createOption": "FromImage",
             "deleteOption": "Delete"
-          }
+          },
+         "dataDisks": [
+            {
+              "lun": 0,
+              "name": "[parameters('dataDiskName')]",
+              "createOption": "Attach",
+              "managedDisk": {
+                "id": "[resourceId('Microsoft.Compute/disks', parameters('dataDiskName'))]"
+              },
+              "deleteOption": "Delete"
+            }
+          ]
         },
         "osProfile": {
           "computerName": "[parameters('vmName')]",
