@@ -17,7 +17,11 @@
     "imageVersion": { "value": "latest" },
     "cloudInitScript": {
       "value": "I2Nsb3VkLWNvbmZpZwpwYWNrYWdlX3VwZGF0ZTogdHJ1ZQpwYWNrYWdlX3VwZ3JhZGU6IHRydWUKCnBhY2thZ2VzOgogIC0gYXBhY2hlMgogIC0gb3BlbnNzbAoKcnVuY21kOgoKICAjRW5hYmxlIHNzbCBtb2R1bGUKICAtIGEyZW5tb2Qgc3NsCiAgCiAgIyBFbmFibGUgdGhlIGRlZmF1bHQgU1NMIHNpdGUKICAtIGEyZW5zaXRlIGRlZmF1bHQtc3NsCgogICMgUmVzdGFydCBBcGFjaGUgdG8gYXBwbHkgdGhlIGNoYW5nZXMKICAtIHN5c3RlbWN0bCByZXN0YXJ0IGFwYWNoZTIKICAtIHN5c3RlbWN0bCBlbmFibGUgYXBhY2hlMgoK"
-    }
+    },
+
+    "dataDiskName": { "value": "vm-lab-challenge3-datadisk1" },
+    "dataDiskSizeGB": { "value": 50 },
+    "dataDiskSku": { "value": "Standard_LRS" }
   }
 }
 
