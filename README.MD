@@ -84,7 +84,7 @@ For example:
 
 Additionally, because I cannot use parameters in main.json to pass outputs dynamically, I need to assign a fixed IP to the server.
 
-This is necessary to configure the NAT firewall rule, since I need to know the server’s IP in advance. In addition, the NAT firewall rule has to be applied directly in firewall.json instead of firewall-params.json, because the external IP of the firewall must be known beforehand.
+This is necessary to configure the NAT firewall rule, since I need to know the server’s IP in advance. In addition, the NAT firewall rule has to be applied directly in firewall.json instead of firewall-params.json, because the external IP of the firewall can't be known beforehand.
 
 Although this approach requires careful parameter alignment between templates, it’s still the preferred method for modular and maintainable ARM deployments.
 
