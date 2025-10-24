@@ -66,6 +66,8 @@ The **Azure Firewall** includes two rules:
 This approach avoids exposing sensitive credentials (such as the App Registration secret) in the codebase or repository.  
 While it adds an extra step, it ensures better security practices, especially when the code is stored in a public GitHub repository.
 
+The password of the server is choosen in the code, in server-params.json, after the deployment it should be changed.
+
 ---
 
 ## Code Structure
