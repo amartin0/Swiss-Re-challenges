@@ -19,11 +19,11 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge2/network/udr.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/main/challenge2/network/udr.json",
           "contentVersion": "1.0.0.0"
         },
         "parametersLink": {
-          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge2/network/udr-params.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/main/challenge2/network/udr-params.json",
           "contentVersion": "1.0.0.0"
         }
       }
@@ -38,11 +38,11 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge2/network/vnet.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/main/challenge2/network/vnet.json",
           "contentVersion": "1.0.0.0"
         },
         "parametersLink": {
-          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge2/network/vnet-params.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/main/challenge2/network/vnet-params.json",
           "contentVersion": "1.0.0.0"
         }
       }
@@ -57,11 +57,11 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge2/network/firewall.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/main/challenge2/network/firewall.json",
           "contentVersion": "1.0.0.0"
         },
         "parametersLink": {
-          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge2/network/firewall-params.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/main/challenge2/network/firewall-params.json",
           "contentVersion": "1.0.0.0"
         }
       }
@@ -77,11 +77,11 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge2/network/bastion.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/main/challenge2/network/bastion.json",
           "contentVersion": "1.0.0.0"
         },
         "parametersLink": {
-          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge2/network/bastion-params.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/main/challenge2/network/bastion-params.json",
           "contentVersion": "1.0.0.0"
         }
       }
@@ -96,11 +96,11 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge2/server/server.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/main/challenge2/server/server.json",
           "contentVersion": "1.0.0.0"
         },
         "parametersLink": {
-          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge2/server/server-params.json",
+          "uri": "https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/main/challenge2/server/server-params.json",
           "contentVersion": "1.0.0.0"
         }
       }
