@@ -88,7 +88,14 @@ Although this approach requires careful parameter alignment between templates, i
 
 Each challenge includes a CHANGELOG.md file explaining the files, modifications, and additions made.
 
- 
+## Deployment instructions 
+
+
+```
+az deployment sub create --location westeurope --template-file ./create-rg.json
+az deployment group create --resource-group <name-resource-group> --template-file ./main.json
+```
+
 
 
 
