@@ -5,7 +5,7 @@ It consists of three different challenges, each one building upon the previous o
 
 The objective is to deploy enough infrastructure to host a web server using the **Mozilla Intermediate Cipher Suite Configuration**, placed behind a firewall.
 
-There are two braches, developing , where tehre are all commits, and main, which is the ultime version.
+There are two branches: developing, where all the commits are, and main, which is the latest version.
 
 ---
 
