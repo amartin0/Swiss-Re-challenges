@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "fwName": { "value": "fw-lab-challenge3" },
+    "fwPublicIpName": { "value": "fw-lab-pip" },
+    "vnetName": { "value": "vnet-lab-challenge3" },
+
+    "networkRuleCollections": {
+      "value": [
+        {
+          "name": "lab-allow-internet",
+          "properties": {
+            "priority": 100,
+            "action": { "type": "Allow" },
+            "rules": [
+              {
+                "name": "services-internet",
+                "protocols": ["Any"],
+                "sourceAddresses": ["172.16.0.0/25"],
+                "destinationAddresses": ["*"],
+                "destinationPorts": ["*"]
+              }
+            ]
+          }
+        }
+      ]
+    },
+
+    "tags": {
+      "value": {
+        "exercise": "challenge3",
+        "env": "lab"
+      }
+    }
+  }
+}
+

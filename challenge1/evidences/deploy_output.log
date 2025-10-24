@@ -1,0 +1,264 @@
+alberto@host1:~/Swiss/Swiss-Re-challenges/challenge1$ az deployment sub create --location westeurope --template-file ./create-rg.json
+{
+  "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/providers/Microsoft.Resources/deployments/create-rg",
+  "location": "westeurope",
+  "name": "create-rg",
+  "properties": {
+    "correlationId": "60084f94-0582-42ca-9cef-f087fad70153",
+    "debugSetting": null,
+    "dependencies": [],
+    "diagnostics": null,
+    "duration": "PT6.314956S",
+    "error": null,
+    "extensions": null,
+    "mode": "Incremental",
+    "onErrorDeployment": null,
+    "outputResources": [
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1",
+        "identifiers": null,
+        "resourceType": null
+      }
+    ],
+    "outputs": null,
+    "parameters": {
+      "location": {
+        "type": "String",
+        "value": "westeurope"
+      }
+    },
+    "parametersLink": null,
+    "providers": [
+      {
+        "id": null,
+        "namespace": "Microsoft.Resources",
+        "providerAuthorizationConsentState": null,
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              "westeurope"
+            ],
+            "properties": null,
+            "resourceType": "deployments",
+            "zoneMappings": null
+          }
+        ]
+      }
+    ],
+    "provisioningState": "Succeeded",
+    "templateHash": "16733785514786552742",
+    "templateLink": null,
+    "timestamp": "2025-10-23T22:15:42.794635+00:00",
+    "validatedResources": null,
+    "validationLevel": null
+  },
+  "tags": null,
+  "type": "Microsoft.Resources/deployments"
+}
+alberto@host1:~/Swiss/Swiss-Re-challenges/challenge1$ az deployment group create --resource-group rg-lab-challenge1 --template-file ./main.json
+{
+  "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Resources/deployments/main",
+  "location": null,
+  "name": "main",
+  "properties": {
+    "correlationId": "107871fa-c68f-434e-8423-3001ffca15f7",
+    "debugSetting": null,
+    "dependencies": [
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Resources/deployments/deployUdr",
+            "resourceGroup": "rg-lab-challenge1",
+            "resourceName": "deployUdr",
+            "resourceType": "Microsoft.Resources/deployments"
+          }
+        ],
+        "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Resources/deployments/deployVnet",
+        "resourceGroup": "rg-lab-challenge1",
+        "resourceName": "deployVnet",
+        "resourceType": "Microsoft.Resources/deployments"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Resources/deployments/deployVnet",
+            "resourceGroup": "rg-lab-challenge1",
+            "resourceName": "deployVnet",
+            "resourceType": "Microsoft.Resources/deployments"
+          }
+        ],
+        "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Resources/deployments/deployFirewall",
+        "resourceGroup": "rg-lab-challenge1",
+        "resourceName": "deployFirewall",
+        "resourceType": "Microsoft.Resources/deployments"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Resources/deployments/deployVnet",
+            "resourceGroup": "rg-lab-challenge1",
+            "resourceName": "deployVnet",
+            "resourceType": "Microsoft.Resources/deployments"
+          },
+          {
+            "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Resources/deployments/deployFirewall",
+            "resourceGroup": "rg-lab-challenge1",
+            "resourceName": "deployFirewall",
+            "resourceType": "Microsoft.Resources/deployments"
+          }
+        ],
+        "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Resources/deployments/deployBastion",
+        "resourceGroup": "rg-lab-challenge1",
+        "resourceName": "deployBastion",
+        "resourceType": "Microsoft.Resources/deployments"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Resources/deployments/deployVnet",
+            "resourceGroup": "rg-lab-challenge1",
+            "resourceName": "deployVnet",
+            "resourceType": "Microsoft.Resources/deployments"
+          }
+        ],
+        "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Resources/deployments/deployServer",
+        "resourceGroup": "rg-lab-challenge1",
+        "resourceName": "deployServer",
+        "resourceType": "Microsoft.Resources/deployments"
+      }
+    ],
+    "diagnostics": null,
+    "duration": "PT17M11.4151876S",
+    "error": null,
+    "extensions": null,
+    "mode": "Incremental",
+    "onErrorDeployment": null,
+    "outputResources": [
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Compute/virtualMachines/vm-lab-challenge1",
+        "identifiers": null,
+        "resourceGroup": "rg-lab-challenge1",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Network/azureFirewalls/fw-lab-challenge1",
+        "identifiers": null,
+        "resourceGroup": "rg-lab-challenge1",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Network/bastionHosts/bastion-lab-challenge1",
+        "identifiers": null,
+        "resourceGroup": "rg-lab-challenge1",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Network/networkInterfaces/vm-lab-challenge1-nic",
+        "identifiers": null,
+        "resourceGroup": "rg-lab-challenge1",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Network/publicIPAddresses/bastion-lab-challenge1-pip",
+        "identifiers": null,
+        "resourceGroup": "rg-lab-challenge1",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Network/publicIPAddresses/fw-lab-pip",
+        "identifiers": null,
+        "resourceGroup": "rg-lab-challenge1",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Network/routeTables/udr-lab-challenge1",
+        "identifiers": null,
+        "resourceGroup": "rg-lab-challenge1",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/b1d12a52-703f-4de3-838c-1ef22b82ad53/resourceGroups/rg-lab-challenge1/providers/Microsoft.Network/virtualNetworks/vnet-lab-challenge1",
+        "identifiers": null,
+        "resourceGroup": "rg-lab-challenge1",
+        "resourceType": null
+      }
+    ],
+    "outputs": {
+      "status": {
+        "type": "String",
+        "value": "Deployment completed successfully inside existing Resource Group."
+      }
+    },
+    "parameters": {
+      "tags": {
+        "type": "Object",
+        "value": {
+          "env": "lab",
+          "exercise": "challenge1"
+        }
+      }
+    },
+    "parametersLink": null,
+    "providers": [
+      {
+        "id": null,
+        "namespace": "Microsoft.Resources",
+        "providerAuthorizationConsentState": null,
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              null
+            ],
+            "properties": null,
+            "resourceType": "deployments",
+            "zoneMappings": null
+          }
+        ]
+      }
+    ],
+    "provisioningState": "Succeeded",
+    "templateHash": "175323644827554872",
+    "templateLink": null,
+    "timestamp": "2025-10-23T22:33:56.663515+00:00",
+    "validatedResources": null,
+    "validationLevel": null
+  },
+  "resourceGroup": "rg-lab-challenge1",
+  "tags": null,
+  "type": "Microsoft.Resources/deployments"
+}
+

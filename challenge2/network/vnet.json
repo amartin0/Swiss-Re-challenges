@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": { "type": "string" },
+    "addressPrefixes": { "type": "array" },
+    "servicesSubnetPrefix": { "type": "string" },
+    "bastionSubnetPrefix": { "type": "string" },
+    "firewallSubnetPrefix": { "type": "string" },
+    "tags": { "type": "object" },
+    "udrName": { "type": "string" }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2024-07-01",
+      "name": "[parameters('vnetName')]",
+      "location": "[resourceGroup().location]",
+      "tags": "[parameters('tags')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": "[parameters('addressPrefixes')]"
+        },
+        "subnets": [
+          {
+            "name": "services",
+            "properties": {
+              "addressPrefixes": [
+                "[parameters('servicesSubnetPrefix')]"
+              ],
+              "routeTable": {
+                "id": "[resourceId('Microsoft.Network/routeTables', parameters('udrName'))]"
+              },
+              "privateEndpointNetworkPolicies": "Disabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+          },
+          {
+            "name": "AzureBastionSubnet",
+            "properties": {
+              "addressPrefixes": [
+                "[parameters('bastionSubnetPrefix')]"
+              ],
+              "privateEndpointNetworkPolicies": "Disabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+          },
+          {
+            "name": "AzureFirewallSubnet",
+            "properties": {
+              "addressPrefixes": [
+                "[parameters('firewallSubnetPrefix')]"
+              ],
+              "privateEndpointNetworkPolicies": "Disabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+

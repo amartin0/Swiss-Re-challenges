@@ -1,0 +1,58 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+
+packages:
+  - apache2
+  - openssl
+  - python3-pip
+
+runcmd:
+
+  #Enable ssl module
+  - a2enmod ssl
+  
+  # Enable the default SSL site
+  - a2ensite default-ssl
+
+  # Restart Apache to apply the changes
+  - systemctl restart apache2
+  - systemctl enable apache2
+  - sleep 1
+
+  #Install Azure pip packages ONLY to get the CLIENT-SECRET of the Service Principal from a keyvault, The certificates will get using the Microsoft Microsoft Entra ID Service Principalzure
+  #It is test, for this reason use --break-system-packages, in a produccion environment we should try to solve the problem of the credentials in a public repository
+  - pip install azure-identity azure-keyvault-secrets --break-system-packages
+
+  #Download the script to configure the new disk
+  - mkdir /tmp/workingdir  
+  - curl -o /tmp/workingdir/disk1.bash -L https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/developing/challenge3/server/scripts/disk1.bash 
+  - bash -x /tmp/workingdir/disk1.bash /dev/sdc
+  - sleep 1
+
+  #Download the script to get the secrets TENANT-ID , CLIENT-ID and CLIENT-SECRET using the Azure modules of python.
+  - mkdir /tmp/workingdir/secrets-App-Registration
+  - curl -o /tmp/workingdir/get-secrets.py -L https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge3/server/scripts/get-secrets.py
+  - python3 /tmp/workingdir/get-secrets.py
+  - sleep 1
+
+  #Download the script to get the certificate and the key from the keyvault , In this script I use a Service Principal as is required for the challenge 3. The Secret and ID are getting from the previous script get-secrets.py, I do it because I don't want to write the secret directly in the python script which is in a public git.
+  - mkdir /tmp/workingdir/cert_output
+  - curl -o /tmp/workingdir/certificate.py -L https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge3/server/scripts/certificate.py
+  - python3 /tmp/workingdir/certificate.py
+  - sleep 1
+
+  #Download the script to enforce TLS 1.2 as Minimum Protocol and configure Cipher Suites according to Mozilla Intermediate Cipher Suite Configuration 
+  - curl -o /tmp/workingdir/configure-apache-ssl.sh -L https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge3/server/scripts/configure-apache-ssl.sh
+  - bash -x /tmp/workingdir/configure-apache-ssl.sh 
+  - sleep 1
+
+  #Download the script to change the certificate
+  - curl -o /tmp/workingdir/update-apache-certs.sh -L https://raw.githubusercontent.com/amartin0/Swiss-Re-challenges/refs/heads/developing/challenge3/server/scripts/update-apache-certs.sh 
+  - bash -x /tmp/workingdir/update-apache-certs.sh
+  - sleep 1
+
+  #Clean the workingdir
+  - rm -rf /tmp/workingdir/ 
+
+

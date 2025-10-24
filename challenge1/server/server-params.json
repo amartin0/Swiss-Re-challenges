@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmName": { "value": "vm-lab-challenge1" },
+    "vmSize": { "value": "Standard_D2s_v3" },
+    "adminUsername": { "value": "adminubuntu" },
+    "adminPassword": { "value": "Temp0R4L!." },
+    "vnetName": { "value": "vnet-lab-challenge1" },
+    "subnetName": { "value": "services" },
+    "privateIpAddress": { "value": "172.16.0.10" },
+    "location": { "value": "westeurope" },
+    "imagePublisher": { "value": "canonical" },
+    "imageOffer": { "value": "ubuntu-24_04-lts" },
+    "imageSku": { "value": "ubuntu-pro" },
+    "imageVersion": { "value": "latest" }
+  }
+}
+
